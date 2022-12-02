@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.countrylist.models.Country
 import com.example.countrylist.repository.CountryRepository
 import com.example.countrylist.repository.CountryRepositoryImpl
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -19,16 +20,18 @@ sealed class CountriesScreenState {
 class CountryViewModel() : ViewModel() {
 
     private val repository: CountryRepository = CountryRepositoryImpl()
-    private val _screenState = MutableStateFlow<CountriesScreenState>(CountriesScreenState.Loading)
-    val screenState = _screenState.asStateFlow()
+
+    private val _countriesScreenState = MutableStateFlow<CountriesScreenState>(CountriesScreenState.Loading)
+    val countriesScreenState = _countriesScreenState.asStateFlow()
 
     fun fetchCountries() {
         viewModelScope.launch {
+            delay(1000L)
             try {
                 val items = repository.getCountries()
-                _screenState.update { CountriesScreenState.Success(items) }
+                _countriesScreenState.update { CountriesScreenState.Success(items) }
             } catch (ex: Exception) {
-                _screenState.update { CountriesScreenState.Error }
+                _countriesScreenState.update { CountriesScreenState.Error }
             }
         }
     }

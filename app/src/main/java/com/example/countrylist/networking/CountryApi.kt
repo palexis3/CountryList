@@ -1,7 +1,10 @@
 package com.example.countrylist.networking
 
-import com.example.countrylist.models.CountryListResponse
+import com.example.countrylist.models.Country
+import retrofit2.http.GET
 
 interface CountryApi {
-    suspend fun getCountries(): CountryListResponse
+
+    @GET(".")
+    suspend fun getCountries(): List<Country>
 }

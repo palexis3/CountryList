@@ -12,6 +12,6 @@ class CountryRepositoryImpl: CountryRepository {
     private val api = NetworkModule.provideCountryApi()
 
     override suspend fun getCountries(): List<Country> {
-        return api.getCountries().items
+        return api.getCountries()
     }
 }
