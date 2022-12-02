@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countrylist.databinding.FragmentCountryListBinding
 import com.example.countrylist.viewmodel.CountriesScreenState
 import com.example.countrylist.viewmodel.CountryViewModel
@@ -57,7 +58,13 @@ class CountryListFragment : Fragment() {
                         is CountriesScreenState.Success -> {
                             binding.errorText.visibility = View.GONE
                             binding.loadingIcon.visibility = View.GONE
+                            binding.recyclerview.visibility = View.VISIBLE
+
                             val countries = screenState.data
+                            binding.recyclerview.apply {
+                                layoutManager = LinearLayoutManager(context)
+                                adapter = CountryRecyclerViewAdapter(countries)
+                            }
                         }
                     }
                 }
