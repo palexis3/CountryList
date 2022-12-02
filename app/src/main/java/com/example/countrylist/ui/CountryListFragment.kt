@@ -1,4 +1,4 @@
-package com.example.countrylist
+package com.example.countrylist.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

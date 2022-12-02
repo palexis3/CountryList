@@ -1,4 +1,4 @@
-package com.example.countrylist
+package com.example.countrylist.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.countrylist.R
 import com.example.countrylist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
