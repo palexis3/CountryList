@@ -61,10 +61,6 @@ class CountryListFragment : Fragment() {
                             binding.recyclerview.visibility = View.VISIBLE
 
                             val countries = screenState.data
-                            binding.recyclerview.apply {
-                                layoutManager = LinearLayoutManager(context)
-                                adapter = CountryRecyclerViewAdapter(countries)
-                            }
                         }
                     }
                 }

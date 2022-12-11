@@ -8,7 +8,7 @@ data class Country(
     val language: Language?,
     val name: String?,
     val region: String?
-)
+): CountryItem
 
 data class Currency(
     val code: String?,
@@ -19,3 +19,9 @@ data class Language(
     val code: String?,
     val name: String?
 )
+
+data class CountryHeader(
+    val header: String
+): CountryItem
+
+interface CountryItem
