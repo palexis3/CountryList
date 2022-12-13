@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-sealed class CountriesScreenState {
-    data class Success(val data: List<CountryItem>) : CountriesScreenState()
-    object Error : CountriesScreenState()
-    object Loading : CountriesScreenState()
+sealed interface CountriesScreenState {
+    data class Success(val data: List<CountryItem>) : CountriesScreenState
+    object Error : CountriesScreenState
+    object Loading : CountriesScreenState
 }
 
 @HiltViewModel
