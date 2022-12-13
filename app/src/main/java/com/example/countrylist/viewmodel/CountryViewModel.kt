@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.countrylist.models.CountryItem
 import com.example.countrylist.models.CountryHeader
 import com.example.countrylist.repository.CountryRepository
-import com.example.countrylist.repository.CountryRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,15 +14,17 @@ import kotlinx.coroutines.launch
 
 sealed class CountriesScreenState {
     data class Success(val data: List<CountryItem>) : CountriesScreenState()
-    object Error: CountriesScreenState()
-    object Loading: CountriesScreenState()
+    object Error : CountriesScreenState()
+    object Loading : CountriesScreenState()
 }
 
-class CountryViewModel() : ViewModel() {
+@HiltViewModel
+class CountryViewModel @Inject constructor(
+    private val repository: CountryRepository
+) : ViewModel() {
 
-    private val repository: CountryRepository = CountryRepositoryImpl()
-
-    private val _countriesScreenState = MutableStateFlow<CountriesScreenState>(CountriesScreenState.Loading)
+    private val _countriesScreenState =
+        MutableStateFlow<CountriesScreenState>(CountriesScreenState.Loading)
     val countriesScreenState = _countriesScreenState.asStateFlow()
 
     fun fetchCountries() {
