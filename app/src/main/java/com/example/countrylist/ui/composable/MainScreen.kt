@@ -1,4 +1,4 @@
-package com.example.countrylist.ui
+package com.example.countrylist.ui.composable
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
